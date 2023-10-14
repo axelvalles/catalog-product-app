@@ -1,0 +1,76 @@
+<section class="pb-4">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold">
+      Product history
+    </h1>
+    <a class="btn btn-neutral" routerLink="/products">Back</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <section *subscribe="product$ as product">
+    <p><strong>Id:</strong> {{product.data?._id}}</p>
+    <p><strong>Name:</strong> {{product.data?.name}}</p>
+    <p><strong>Description:</strong> {{product.data?.description}}</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2 class="text-2xl font-bold">
+      Product Prices
+    </h2>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th>Old price</th>
+            <th>New Price</th>
+            <th>Difference</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody *subscribe="productPriceHistory$ as productPriceHistory">
+          <!-- row 1 -->
+          <tr *ngFor="let history of productPriceHistory.data">
+            <td>{{history.oldPrice | currency}}</td>
+            <td>{{history.newPrice | currency}}</td>
+            <td>{{history.oldPrice - history.newPrice | currency}}</td>
+            <td>{{history.date | date:'short'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <h2 class="text-2xl font-bold">
+      Product Stock
+    </h2>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Old stock</th>
+            <th>New stock</th>
+            <th>Difference</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody *subscribe="productStockHistory$ as productStockHistory">
+          <tr *ngFor="let history of productStockHistory.data">
+            <td>{{history.oldStock }}</td>
+            <td>{{history.newStock }}</td>
+            <td>{{history.oldStock - history.newStock }}</td>
+            <td>{{history.date | date:'short'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+</section>

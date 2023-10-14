@@ -1,0 +1,41 @@
+<div>
+  <!-- Form Control  -->
+  <div class="form-control w-full">
+    <label class="label">
+      <span class="label-text font-bold">{{label}}</span>
+    </label>
+    <div class="flex space-x-2">
+      <input [disabled]="isDisabled" [ngClass]="{
+        'input-error': invalid,
+        'input-xs': size === 'xs',
+        'input-sm': size === 'sm',
+        'input-md': size === 'md',
+        'input-lg': size === 'lg'}" type="text" class="input input-bordered w-full" [value]="inputValue"
+        (change)="onInputChange($event)" />
+      <button [disabled]="isDisabled" [ngClass]="{
+        'btn-xs': size === 'xs',
+        'btn-sm': size === 'sm',
+        'btn-md': size === 'md',
+        'btn-lg': size === 'lg'}" (click)="onAddTag()" type="button" class="btn btn-neutral">add</button>
+    </div>
+    <label class="label">
+      <span *ngIf="invalid" class="label-text-alt text-error">{{textError}}</span>
+    </label>
+  </div>
+  <!-- End Form Control  -->
+
+  <!-- Tags Container -->
+  <div class="w-full bg-base-300 border py-4 px-2 space-x-2 rounded-md">
+    <!-- Tag -->
+    <div *ngFor="let tag of currentValue; index as i;" class="badge badge-info gap-2">
+      <svg (click)="onDeleteTag(i)" role="button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        class="inline-block w-4 h-4 stroke-current">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+      <span>{{tag}}</span>
+    </div>
+    <!-- End Tag -->
+  </div>
+
+
+</div>

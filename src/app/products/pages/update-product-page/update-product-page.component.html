@@ -1,0 +1,31 @@
+<section *subscribe="isLoading$ as isLoading" class="pb-4">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold">
+      Update product
+    </h1>
+    <a class="btn btn-neutral" routerLink="/products">Back</a>
+  </div>
+
+  <div * class=" divider"></div>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="w-full max-w-lg mx-auto space-y-2">
+
+    <app-input formControlName="name" label="Name" textError="This field is required" [invalid]="inputNameError" />
+
+    <app-input formControlName="description" label="Description" textError="This field is required"
+      [invalid]="inputDescriptionError" />
+
+    <app-input formControlName="image" label="Image" [textError]="inputImageErrorMessage" [invalid]="inputImageError" />
+
+    <app-tag-input formControlName="tags" label="Tags" textError="This field is required" [invalid]="inputTagsError" />
+
+
+    <div>
+      <button [disabled]="isLoading" type="submit" class="btn btn-neutral btn-block">
+        <span *ngIf="isLoading" class="loading loading-spinner"></span>
+        Update
+      </button>
+    </div>
+  </form>
+
+</section>

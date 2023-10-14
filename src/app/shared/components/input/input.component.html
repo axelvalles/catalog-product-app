@@ -1,0 +1,15 @@
+<div class="form-control w-full">
+  <label class="label">
+    <span class="label-text font-bold">{{label}}</span>
+  </label>
+  <input [disabled]="isDisabled" [ngClass]="{
+      'input-error': invalid,
+      'input-xs': size === 'xs',
+      'input-sm': size === 'sm',
+      'input-md': size === 'md',
+      'input-lg': size === 'lg'}" [type]="type" class="input input-bordered w-full" [value]="currentValue"
+    (change)="onInputChange($event)" />
+  <label class="label">
+    <span *ngIf="invalid" class="label-text-alt text-error">{{textError}}</span>
+  </label>
+</div>
